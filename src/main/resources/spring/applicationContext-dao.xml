@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- 数据库连接池 -->
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath*:properties/*.properties" />
+	<!-- 数据库连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="maxActive" value="10" />
+		<property name="minIdle" value="5" />
+	</bean>
+	
+	<!-- 配置 运营商管理后台模块需要处理的表 -->
+	<util:set id="manager_Web_tableSet">       
+        <value>tb_brand</value>       
+        <value>tb_goods</value>
+        <value>tb_goods_desc</value>
+        <value>tb_item</value>
+        <value>tb_item_cat</value>        
+        <value>tb_seller</value>
+        <value>tb_specification</value>
+        <value>tb_specification_option</value>
+        <value>tb_type_template</value>
+    </util:set>
+    
+    <!-- 配置商家管理模块需要处理的表 -->
+	<util:set id="manager_shop_tableSet">
+        <value>tb_goods</value>
+        <value>tb_seller</value>
+    </util:set>
+    
+      <!-- 配置广告管理模块需要处理的表 -->
+	<util:set id="manager_content_tableSet">
+        <value>tb_content_category</value>
+        <value>tb_content</value>
+    </util:set>
+    
+     <!-- 配置用户管理模块需要处理的表 -->
+	<util:set id="manager_user_tableSet">
+        <value>tb_user</value>
+        <value>tb_address</value>
+    </util:set>
+    
+    <!-- 配置订单保存模块需要处理的表 -->
+	<util:set id="order_tableSet">
+        <value>tb_order</value>
+    </util:set>
+    
+    <!-- 配置秒杀模块需要处理的表 -->
+	<util:set id="seckill_tableSet">
+        <value>tb_seckill_goods</value>
+        <value>tb_seckill_order</value>
+    </util:set>
+    
+    
+    <!-- 配置xxx模块需要处理的表 -->
+	<util:set id="manager_xxx_tableSet">
+       <value>tb_address</value>
+        <value>tb_areas</value>
+        <value>tb_brand</value>
+        <value>tb_cities</value>
+        <value>tb_content</value>
+        <value>tb_content_category</value>
+        <value>tb_freight_template</value>
+        <value>tb_goods</value>
+        <value>tb_goods_desc</value>
+        <value>tb_item</value>
+        <value>tb_item_cat</value>
+        <value>tb_order</value>
+        <value>tb_order_item</value>
+        <value>tb_pay_log</value>
+        <value>tb_provinces</value>
+        <value>tb_seller</value>
+        <value>tb_specification</value>
+        <value>tb_specification_option</value>
+        <value>tb_type_template</value>
+        <value>tb_user</value>       
+    </util:set>
+    
+    
+	
+</beans>
